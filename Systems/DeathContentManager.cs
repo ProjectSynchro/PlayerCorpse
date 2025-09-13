@@ -223,14 +223,14 @@ namespace PlayerCorpse.Systems
 
                 if (mapLayer is null)
                 {
-                    byPlayer.Api.Logger.Error(Lang.Get("waypoint-add-null-error"));
+                    byPlayer.Api.Logger.Error("Failed to create waypoint, maplayer is null");
                     return;
                 }
 
                 Waypoint wp = new()
                 {
                     Position = byPlayer.ServerPos.AsBlockPos.ToVec3d(),
-                    Title = $"Death: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}",
+                    Title = Lang.Get($"{Constants.ModId}:death-waypoint-name", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                     Pinned = Core.Config.PinWaypoint,
                     Icon = Core.Config.WaypointIcon,
                     Color = ColorTranslator.FromHtml(Core.Config.WaypointColor).ToArgb(),
